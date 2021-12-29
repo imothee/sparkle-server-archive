@@ -1,0 +1,3 @@
+ALTER TABLE versions
+    ADD COLUMN build VARCHAR NOT NULL DEFAULT '';
+CREATE INDEX ON versions (build);

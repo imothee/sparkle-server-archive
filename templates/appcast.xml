@@ -6,7 +6,7 @@
         <item>
             <title>{{ version.version }}</title>
             <pubDate>{{ version.created_at }}</pubDate>
-            <sparkle:version>{{ version.version }}</sparkle:version>
+            <sparkle:version>{{ version.build }}</sparkle:version>
             <sparkle:shortVersionString>{{ version.version }}</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>{{ version.min_system_version }}</sparkle:minimumSystemVersion>
             <description>

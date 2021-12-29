@@ -18,6 +18,7 @@ pub struct Version {
   pub length: String,
   pub created_at: DateTime<Utc>,
   pub updated_at: DateTime<Utc>,
+  pub build: String,
 }
 
 #[derive(Insertable)]
@@ -31,6 +32,7 @@ pub struct NewVersion<'a> {
   pub dsa_signature: Option<&'a str>,
   pub ed_signature: Option<&'a str>,
   pub length: &'a str,
+  pub build: &'a str,
 }
 
 impl Version {
@@ -44,7 +46,7 @@ impl Version {
   pub fn by_app_id(app_id: &i32, conn: &diesel::PgConnection) -> QueryResult<Vec<Self>> {
     versions::table
       .filter(versions::app_id.eq(app_id))
-      .order(versions::version.desc())
+      .order(versions::build.desc())
       .load(conn)
   }
 }

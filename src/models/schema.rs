@@ -66,6 +66,7 @@ table! {
         length -> Varchar,
         created_at -> Timestamptz,
         updated_at -> Timestamptz,
+        build -> Varchar,
     }
 }
 
