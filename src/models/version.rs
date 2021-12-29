@@ -42,6 +42,9 @@ impl Version {
   }
 
   pub fn by_app_id(app_id: &i32, conn: &diesel::PgConnection) -> QueryResult<Vec<Self>> {
-    versions::table.filter(versions::app_id.eq(app_id)).load(conn)
+    versions::table
+      .filter(versions::app_id.eq(app_id))
+      .order(versions::version.desc())
+      .load(conn)
   }
 }
