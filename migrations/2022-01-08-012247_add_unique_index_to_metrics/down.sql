@@ -1,0 +1,1 @@
+DROP INDEX app_weekly_metric;

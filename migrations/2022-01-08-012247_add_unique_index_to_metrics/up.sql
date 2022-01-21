@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX app_weekly_metric ON metrics (app_id, date, profile_key, profile_value);

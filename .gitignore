@@ -1,3 +1,14 @@
+# Rust
 /target
+# Project
 .env
 .idea
+# Mac
+.DS_Store
+# Rescript
+/node_modules/
+/lib/
+.bsb.lock
+.merlin
+# Build
+/dist

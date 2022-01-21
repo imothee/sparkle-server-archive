@@ -45,4 +45,29 @@ impl SystemProfile {
       .get_result(conn)
       .expect("Error saving new profile")
   }
+
+  pub fn all(conn: &diesel::PgConnection) -> QueryResult<Vec<Self>> {
+    system_profiles::table.load(conn)
+  }
+
+  pub fn by_app_id(app_id: &i32, conn: &diesel::PgConnection) -> QueryResult<Vec<Self>> {
+    system_profiles::table
+      .filter(system_profiles::app_id.eq(app_id))
+      .load(conn)
+  }
+
+  pub fn by_app_id_between(app_id: &i32, start: &DateTime<Utc>, end: &DateTime<Utc>, conn: &diesel::PgConnection) -> QueryResult<Vec<Self>> {
+    system_profiles::table
+      .filter(system_profiles::app_id.eq(app_id))
+      .filter(system_profiles::created_at.between(start, end))
+      .load(conn)
+  }
+
+  pub fn delete_older_than(date: &DateTime<Utc>, conn: &diesel::PgConnection) -> usize {
+    diesel::delete(
+      system_profiles::table.filter(system_profiles::created_at.lt(date))
+    )
+      .execute(conn)
+      .expect("Error deleting profiles")
+  }
 }

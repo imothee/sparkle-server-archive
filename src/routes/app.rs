@@ -25,11 +25,6 @@ pub struct Profiling {
   lang: Option<String>,
 }
 
-#[get("/")]
-pub async fn index() -> impl Responder {
-  HttpResponse::Ok().body("Hello world!")
-}
-
 #[get("/updates/{app_slug}.xml")]
 pub async fn get_app_xml(
   pool: web::Data<db::DbPool>,
@@ -54,7 +49,6 @@ pub async fn get_app_xml(
     })?;
 
   let conn = pool.get().expect("couldn't get db connection from pool");
-
   let is64bit = profile.cpu64bit.map(|f| f == 1);
   let profile = NewSystemProfile {
     app_id: &app.id,
@@ -77,10 +71,10 @@ pub async fn get_app_xml(
   ctx.insert("versions", &versions);
 
   let s = tmpl.render("appcast.xml", &ctx)
-      .map_err(|e| {
-          eprintln!("{}", e);
-          HttpResponse::InternalServerError().finish()
-      })?;
-  
+    .map_err(|e| {
+      eprintln!("{}", e);
+      HttpResponse::InternalServerError().finish()
+    })?;
+
   Ok(HttpResponse::Ok().content_type("application/xml").body(s))
 }

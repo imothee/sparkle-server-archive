@@ -1,6 +1,7 @@
 use diesel;
 use diesel::prelude::*;
 use chrono::{DateTime, Utc};
+use serde::{Serialize};
 
 use super::schema::users;
 
@@ -8,7 +9,6 @@ use super::schema::users;
 pub struct User {
   pub id: i32,
   pub email: String,
-  //#[rocket::serde(skip_serializing)]
   pub password_token: String,
   pub last_login: DateTime<Utc>,
   pub created_at: DateTime<Utc>,
@@ -28,5 +28,11 @@ impl User {
       .values(new_user)
       .get_result(conn)
       .expect("Error saving new user")
+  }
+
+  pub fn get_by_email(email: &str, conn: &diesel::PgConnection) -> QueryResult<Self> {
+    users::table
+      .filter(users::email.eq(email))
+      .first(conn)
   }
 }

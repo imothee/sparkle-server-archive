@@ -10,7 +10,7 @@ pub struct App {
   pub id: i32,
   pub name: String,
   pub slug: String,
-  pub descriptiom: String,
+  pub description: String,
   pub icon: Option<String>,
   pub created_at: DateTime<Utc>,
   pub updated_at: DateTime<Utc>,
@@ -31,6 +31,11 @@ impl App {
       .values(new_app)
       .get_result(conn)
       .expect("Error saving new app")
+  }
+
+  pub fn all(conn: &diesel::PgConnection) -> QueryResult<Vec<Self>> {
+    apps::table
+      .load(conn)
   }
 
   pub fn get_by_slug(slug: &String, conn: &diesel::PgConnection) -> QueryResult<Self> {

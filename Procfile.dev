@@ -1,2 +1,3 @@
-server: cargo watch -x 'run --color=always'
-client: npm run start:dev
+server: cargo watch -x 'run --color=always' -w src
+re_client: npm run re:start
+client: npm run start

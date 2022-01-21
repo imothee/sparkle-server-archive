@@ -1,0 +1,60 @@
+{
+  "name": "sparkle-server",
+  "version": "0.0.1",
+  "description": "Sparkle-server is your one stop shop for app hosting and privacy first sparkle-profile metrics. We host your appcast, profile your users in a privacy first, safe way.",
+  "main": "index.js",
+  "scripts": {
+    "re:build": "rescript",
+    "re:start": "rescript build -w",
+    "prebuild": "npm run re:build",
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack serve --config webpack.dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imothee/sparkle-server.git"
+  },
+  "keywords": [
+    "sparkle",
+    "sparkle-project",
+    "apps"
+  ],
+  "author": "@imothee",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/imothee/sparkle-server/issues"
+  },
+  "homepage": "https://github.com/imothee/sparkle-server#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-react": "^7.16.7",
+    "autoprefixer": "^10.4.1",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "cssnano": "^5.0.14",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "postcss": "^8.4.5",
+    "postcss-import": "^14.0.2",
+    "postcss-loader": "^6.2.1",
+    "rescript": "^9.1.4",
+    "source-map-loader": "^3.0.0",
+    "style-loader": "^3.3.1",
+    "tailwindcss": "^3.0.8",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.2",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@glennsl/bs-json": "^5.0.4",
+    "@rescript/react": "^0.10.3",
+    "@ryyppy/rescript-promise": "^2.1.0",
+    "bs-fetch": "^0.6.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "recharts": "^2.1.8"
+  }
+}

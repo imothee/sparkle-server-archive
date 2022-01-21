@@ -1,0 +1,23 @@
+{
+  "name": "sparkle-server",
+  "sources": [
+    {
+      "dir": "client",
+      "subdirs": true
+    }
+  ],
+  "package-specs": [
+    {
+      "module": "es6",
+      "in-source": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "reason": { "react-jsx": 3 },
+  "bs-dependencies": [
+    "@rescript/react",
+    "@ryyppy/rescript-promise",
+    "bs-fetch",
+    "@glennsl/bs-json",
+  ]
+}
