@@ -89,7 +89,9 @@ export default function Metrics({appId}) {
     if (data === undefined || data.count === 0) {
       return (<p>Error rendering chart for {key}</p>);
     }
+
     let lineKeys = Object.keys(data[0]).filter((e) => e !== "name");
+    data.sort((a, b) => Date.parse(a.name) - Date.parse(b.name));
 
     return (
       <div>
@@ -114,6 +116,7 @@ export default function Metrics({appId}) {
       return (<p>Error rendering chart for {key}</p>);
     }
     let lineKeys = Object.keys(data[0]).filter((e) => e !== "name");
+    data.sort((a, b) => Date.parse(a.name) - Date.parse(b.name));
 
     return (
       <div>
