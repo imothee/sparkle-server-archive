@@ -1,0 +1,32 @@
+<div class="max-w-[75rem] mx-auto px-4 sm:px-6 lg:px-8 py-20">
+  <div class="bg-zinc-700 rounded-lg shadow flex flex-col p-8 mt-4">
+    <div class="flex flex-row">
+      <div class="w-5/6">
+        <h1 class="text-stone-200 text-2xl mb-4"><%= @app.name %></h1>
+        <p class="text-gray-400 mb-4 mr-4"><%= @app.details %></p>
+      </div>
+      <div class="w-1/6 flex items-center">
+        <%= if @app.image_icon do %>
+          <%= img_tag(Routes.apps_path(@conn,:images_show, @app.id, "icon")) %>
+        <% end %>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-4 mt-20">
+      <%= if @app.image_one do %>
+        <div>
+          <%= img_tag(Routes.apps_path(@conn,:images_show, @app.id, "one")) %>
+        </div>
+      <% end %>
+      <%= if @app.image_two do %>
+        <div>
+          <%= img_tag(Routes.apps_path(@conn,:images_show, @app.id, "two")) %>
+        </div>
+      <% end %>
+      <%= if @app.image_three do %>
+        <div>
+          <%= img_tag(Routes.apps_path(@conn,:images_show, @app.id, "three")) %> 
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

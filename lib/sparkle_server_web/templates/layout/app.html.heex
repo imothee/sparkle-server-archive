@@ -1,0 +1,5 @@
+<section id="main" class="pt-10">
+  <p class="alert alert-info max-w-[40rem] mx-auto" role="alert"><%= get_flash(@conn, :info) %></p>
+  <p class="alert alert-danger max-w-[40rem] mx-auto" role="alert"><%= get_flash(@conn, :error) %></p>
+  <%= @inner_content %>
+</section>

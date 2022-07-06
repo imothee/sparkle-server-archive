@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="csrf-token" content={csrf_token_value()}>
+    <%= if assigns[:meta_attrs], do: meta_tags(assigns[:meta_attrs]) %>
+    <%= live_title_tag assigns[:page_title] || "SparkleServer", suffix: " · SparkleServer" %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+  </head>
+  <body>
+    <div class="relative overflow-hidden min-h-screen flex flex-col bg-circle">
+      <header class="absolute top-0 left-0 right-0 z-20">
+        <nav class="max-w-[75rem] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+            <div class="flex justify-start lg:w-0 lg:flex-1">
+              <a href="/" class="font-extrabold tracking-tight text-gray-900">
+                <%= @settings.site_name %>
+              </a>
+            </div>
+            <nav class="hidden md:flex space-x-10">
+              <%= if @current_user do %>
+              <%= link "Admin", to: Routes.admin_path(@conn, :index), class: "text-base font-medium text-gray-500 hover:text-gray-900" %>
+              <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "text-base font-medium text-gray-500 hover:text-gray-900" %>
+              <% end %>
+            </nav>
+          </div>
+        </nav>
+      </header>
+      <%= @inner_content %>
+      <div class="flex-shrink bg-dark-secondary">
+        <div class="container mx-auto">
+          <div class="flex justify-center flex-grow flex-shrink-0 lg:flex-grow-0">
+            <div class="flex py-5">
+              <p class="text-white text-sm px-5">&copy; 2022 Tim</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

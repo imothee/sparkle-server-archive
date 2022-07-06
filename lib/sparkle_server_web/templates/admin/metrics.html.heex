@@ -1,0 +1,14 @@
+<div class="max-w-[75rem] mx-auto px-4 sm:px-6 lg:px-8 py-20">
+  <h1 class="lg:text-center text-xl sm:text-2xl font-semibold text-gray-900"><%= @app.name %> Metrics</h1>
+    
+  <div class="mt-8 space-y-6">
+    <div id="charts" class="grid grid-cols-1 gap-2" data-app-id={@app.id}>
+      <%= for {k, v} <- @charts do %>
+        <div>
+          <h2 class="text-center text-large p-4"><%= v %></h2>
+          <canvas id={k} height="400" width="800"></canvas>
+        </div>
+      <% end %>
+    </div>
+  </div>  
+</div>

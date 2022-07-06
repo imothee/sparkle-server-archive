@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "chart.js": "^3.8.0"
+  },
+  "scripts": {
+    "deploy": "cd .. && mix assets.deploy && rm -f _build/esbuild*"
+  }
+}

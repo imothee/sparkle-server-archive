@@ -1,0 +1,86 @@
+<div class="max-w-[75rem] mx-auto px-4 sm:px-6 lg:px-8 py-20">
+  <div class="max-w-[40rem] mx-auto">
+    <h1 class="lg:text-center text-xl sm:text-2xl font-semibold text-gray-900">Edit <%= @app.name %></h1>
+    
+    <div class="mt-8 space-y-6">   
+      <%= form_for @changeset, Routes.admin_path(@conn, :apps_update, @app.id), [multipart: true], fn f -> %>
+        <div class="rounded-md shadow-sm space-y-4">
+          <div>
+            <%= label f, :name, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= text_input f, :name, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <%= error_tag f, :name %>
+          </div>
+          <div>
+            <%= label f, :slug, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= text_input f, :slug, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <%= error_tag f, :slug %>
+          </div>
+          <div>
+            <%= label f, :description, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= textarea f, :description, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <p class="mt-2 text-sm text-gray-500">A short description of your app.</p>
+            <%= error_tag f, :description %>
+          </div>
+          <div>
+            <%= label f, :details, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= textarea f, :details, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <p class="mt-2 text-sm text-gray-500">A longer writeup of your app details.</p>
+            <%= error_tag f, :details %>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Icon (Optional)</label>
+            <div class="mt-1 grid grid-cols-2 gap-4">
+              <%= file_input f, :image_icon, class: "appearance-none rounded-none relative block w-full h-10 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+              <%= if @app.image_icon do %>
+                <%= img_tag(Routes.apps_path(@conn, :images_show, @app.id, "icon"), class: "w-40 h-40 mx-auto") %>
+              <% end %>
+            </div>
+            <%= error_tag f, :image_icon %>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Screenshot One (Optional)</label>
+            <div class="mt-1 grid grid-cols-2 gap-4">
+              <%= file_input f, :image_one, class: "appearance-none rounded-none relative block w-full h-10 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+              <%= if @app.image_one do %>
+                <%= img_tag(Routes.apps_path(@conn, :images_show, @app.id, "one"), class: "w-40 h-40 mx-auto") %>
+              <% end %>
+            </div>
+            <%= error_tag f, :image_one %>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Screenshot Two (Optional)</label>
+            <div class="mt-1 grid grid-cols-2 gap-4">
+              <%= file_input f, :image_two, class: "appearance-none rounded-none relative block w-full h-10 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+              <%= if @app.image_two do %>
+                <%= img_tag(Routes.apps_path(@conn, :images_show, @app.id, "two"), class: "w-40 h-40 mx-auto") %>
+              <% end %>
+            </div>
+            <%= error_tag f, :image_two %>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Screenshot Three (Optional)</label>
+            <div class="mt-1 grid grid-cols-2 gap-4">
+              <%= file_input f, :image_three, class: "appearance-none rounded-none relative block w-full h-10 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+              <%= if @app.image_three do %>
+                <%= img_tag(Routes.apps_path(@conn, :images_show, @app.id, "three"), class: "w-40 h-40 mx-auto") %>
+              <% end %>
+            </div>
+            <%= error_tag f, :image_three %>
+          </div>
+        </div>  
+
+        <div class="mt-4">
+          <%= submit "Edit App", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

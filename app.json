@@ -1,0 +1,29 @@
+{
+  "name": "Sparkle Server",
+  "description": "Sparkle-server is your one stop shop for AppCast hosting and privacy first sparkle-profile metrics.",
+  "repository": "https://github.com/imothee/sparkle-server",
+  "keywords": ["sparkle", "sparkle framework", "appcast"],
+  "buildpacks": [
+    {
+      "url": "hashnuke/elixir"
+    },
+    {
+      "url": "https://github.com/gjaldon/heroku-buildpack-phoenix-static.git"
+    }
+  ],
+  "env": {
+    "SECRET_KEY_BASE": {
+      "description": "A secret key for phoenix.",
+      "generator": "secret"
+    },
+    "POOL_SIZE": {
+      "description": "Number of connections to pool to the database.",
+      "value": "15"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql"
+    }
+  ]
+}

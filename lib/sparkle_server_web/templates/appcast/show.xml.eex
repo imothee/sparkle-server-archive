@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title><%= @app.name %></title>
+        <%= for version <- @app.versions do %>
+            <item>
+                <title><%= version.version %></title>
+                <pubDate><%= version.inserted_at %></pubDate>
+                <sparkle:version><%= version.build %></sparkle:version>
+                <sparkle:shortVersionString><%= version.version %></sparkle:shortVersionString>
+                <sparkle:minimumSystemVersion><%= version.min_system_version %></sparkle:minimumSystemVersion>
+                <description>
+                    <%= version.description %>
+                </description>
+                <enclosure url="<%= version.url %>" length="<%= version.length %>" type="application/octet-stream" sparkle:dsaSignature="<%= version.dsa_signature %>" sparkle:edSignature="<%= version.ed_signature %>"/>
+            </item>
+        <% end %>
+    </channel>
+</rss>

@@ -1,0 +1,24 @@
+<div class="max-w-[75rem] mx-auto px-4 sm:px-6 lg:px-8 py-20">
+  <div class="lg:text-center">
+    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+      A list of awesome apps by <%= @settings.author %>
+    </p>
+  </div>
+  <div class="grid grid-cols-2 gap-4 mt-8">
+    <%= for app <- @apps do %>
+    <div class="bg-zinc-700 rounded-lg shadow flex flex-row p-4">
+      <div class="w-2/3">
+        <h1 class="text-stone-200 text-2xl mb-4">
+          <%= link(app.name, to: Routes.apps_path(@conn, :show, app.slug)) %>
+        </h1>
+        <p class="text-gray-400 mb-4 mr-4"><%= app.description %></p>
+      </div>
+      <div class="w-1/3 flex items-center">
+        <%= if app.image_icon do %>
+        <%= img_tag(Routes.apps_path(@conn, :images_show, app.id, "icon")) %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

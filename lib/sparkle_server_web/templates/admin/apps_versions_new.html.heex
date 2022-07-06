@@ -1,0 +1,77 @@
+<div class="max-w-[75rem] mx-auto px-4 sm:px-6 lg:px-8 py-20">
+  <div class="max-w-[40rem] mx-auto">
+    <h1 class="lg:text-center text-xl sm:text-2xl font-semibold text-gray-900">Add version to <%= @app.name %></h1>
+    
+    <div class="mt-8 space-y-6">   
+      <%= form_for @changeset, Routes.admin_path(@conn, :apps_versions_create, @app.id), fn f -> %>
+        <div class="rounded-md shadow-sm space-y-4">
+          <div>
+            <%= label f, :version, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= text_input f, :version, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <%= error_tag f, :version %>
+          </div>
+          <div>
+            <%= label f, :build, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= text_input f, :build, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <%= error_tag f, :build %>
+          </div>
+          <div>
+            <%= label f, :min_system_version, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= text_input f, :min_system_version, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <%= error_tag f, :min_system_version %>
+          </div>
+          <div>
+            <%= label f, :url, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= text_input f, :url, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <p class="mt-2 text-sm text-gray-500">The url to your app dmg.</p>
+            <%= error_tag f, :url %>
+          </div>
+          <div>
+            <%= label f, :description, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= textarea f, :description, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <p class="mt-2 text-sm text-gray-500">Short &lt; 255 character description of the update.</p>
+            <%= error_tag f, :description %>
+          </div>
+          <div>
+            <%= label f, :ed_signature, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= text_input f, :ed_signature, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <p class="mt-2 text-sm text-gray-500">The EdDSA from signing (required).</p>
+            <%= error_tag f, :ed_signature %>
+          </div>
+          <div>
+            <%= label f, :dsa_signature, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= text_input f, :dsa_signature, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <p class="mt-2 text-sm text-gray-500">The DSA signature from signing (optional).</p>
+            <%= error_tag f, :dsa_signature %>
+          </div>
+          <div>
+            <%= label f, :length, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= text_input f, :length, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <p class="mt-2 text-sm text-gray-500">The binary length in bytes.</p>
+            <%= error_tag f, :length %>
+          </div>
+        </div>        
+
+        <div class="mt-4">
+          <%= submit "Add Version", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
