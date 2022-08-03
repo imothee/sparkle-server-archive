@@ -32,7 +32,7 @@ defmodule SparkleServer.Profiles do
       [s],
       s.app_id == ^app.id and s.inserted_at >= ^date_start and s.inserted_at < ^date_end
     )
-    |> order_by([s], s.date_start)
+    |> order_by([s], s.inserted_at)
     |> Repo.all()
   end
 
